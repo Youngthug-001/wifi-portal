@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Access Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .portal-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        a.payment-link {
+            display: block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a.payment-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <h2>Welcome to Our Wi-Fi</h2>
+        <p>Enter your voucher code to get access:</p>
+
+        <form id="voucherForm">
+            <input type="text" id="voucherCode" placeholder="Enter voucher code" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <p>Or pay via M-Pesa:</p>
+        <a class="payment-link" href="https://www.safaricom.co.ke/personal/m-pesa" target="_blank">Pay Now with M-Pesa</a>
+
+        <p id="message" style="color:red; margin-top:10px;"></p>
+    </div>
+
+    <script>
+        const voucherForm = document.getElementById('voucherForm');
+        const message = document.getElementById('message');
+
+        voucherForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = document.getElementById('voucherCode').value.trim();
+
+            // Simple example: predefined voucher codes
+            const validVouchers = ["ABC123", "FREEWIFI", "VIP2025"];
+
+            if(validVouchers.includes(code)) {
+                message.style.color = "green";
+                message.textContent = "Voucher accepted! You now have internet access.";
+                // Here you can trigger router API or redirect to internet access page
+                setTimeout(() => {
+                    window.location.href = "http://example.com"; // replace with actual redirect
+                }, 2000);
+            } else {
+                message.style.color = "red";
+                message.textContent = "Invalid voucher code. Try again or pay via M-Pesa.";
+            }
+        });
+    </script>
+</body>
+</html>
+
